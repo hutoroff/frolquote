@@ -17,7 +17,6 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <logback.version>1.2.3</logback.version>
         <jackson.fasterxml.version>2.9.7</jackson.fasterxml.version>
-        <target.file.name>${project.artifactId}-jar-with-dependencies.jar</target.file.name>
     </properties>
 
     <dependencies>
@@ -74,6 +73,7 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.10.19</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -149,6 +149,8 @@
                 <directory>src/test/resources</directory>
             </testResource>
         </testResources>
+
+        <finalName>${project.artifactId}</finalName>
 
     </build>
 </project>

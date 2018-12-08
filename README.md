@@ -8,7 +8,7 @@ This is telegram bot that is triggered by key words and replies with quotes from
 # Build
 To build project execute command:
 
-    mvn clean assembly:single
+    mvn clean compile assembly:single
     
 # Run
 To run bot you should use 2 arguments:
