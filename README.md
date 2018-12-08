@@ -10,7 +10,11 @@ To build project execute command:
 
     mvn clean assembly:single
     
-For correct work of bot you need add to file `./src/main/resources/bot.secured.properties` following content:
+# Run
+To run bot you should use 2 arguments:
+* `token` - provides token received from [@BotFather](https://telegram.me/botfather) after bot registration;
+* `username` -  username selected for bot on registration.
 
-    username=%Bot name registered by Telegram bot @BotFather%
-    token=%Token provided by @BotFather on registration%
+Example:
+
+    java -jar frolquote-jar-with-dependencies.jar --token $BOT_TOKEN --username $BOT_USERNAME
