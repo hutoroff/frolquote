@@ -18,3 +18,10 @@ To run bot you should use 2 arguments:
 Example:
 
     java -jar frolquote-jar-with-dependencies.jar --token $BOT_TOKEN --username $BOT_USERNAME
+    
+# Docker
+To run latest image of this project (you can check it here: [Docker Hub](https://hub.docker.com/r/hutoroff/frolquote/)) execute command:
+
+    docker run --name frolquote hutoroff/frolquote -i -t --restart always -e FROL_TOKEN=$BOT_TOKEN -e FROL_USERNAME=$BOT_NAME
+    
+_Do not forget to change `$BOT_TOKEN` and `$BOT_NAME` on your values or register this environment variables_
