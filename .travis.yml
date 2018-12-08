@@ -1,15 +1,20 @@
 language: java
 jdk:
-- oraclejdk8
+- openjdk8
 sudo: false
+
 install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn verify
+  - mvn verify jacoco:report -B -V
 
 after_success:
-  - mvn jacoco:report coveralls:report
+  - mvn coveralls:report
 
 notifications:
   email:
     on_failure: always
+
+cache:
+  directories:
+    - $HOME/.m2
