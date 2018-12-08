@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class FrolBot extends TelegramLongPollingBot {
     private static final Logger LOG = LoggerFactory.getLogger(FrolBot.class);
-    private static final Pattern hotWordsPattern = HotWords.getPatternFroHotWords();
+    private static final Pattern hotWordsPattern = HotWords.getPatternForHotWords();
     private static final String HELP_MSG = "Есть только одна команда, братцы: /quote - по ней вы услышите мой голос";
 
     private final String botUsername;
@@ -28,7 +28,7 @@ public class FrolBot extends TelegramLongPollingBot {
         super();
         this.botUsername = botUsername;
         this.botToken = botToken;
-        this.commandParser = new CommandParser(botUsername);
+        this.commandParser = new CommandParser(this.getBotUsername());
     }
 
     @Override
