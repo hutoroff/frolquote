@@ -1,32 +1,24 @@
 package ru.hutoroff.frolquote.bot;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
+import org.apache.commons.cli.CommandLine;
 
-/**
- * Reads properties required for bot work form file 'resources/bot.secured.properties"
- */
-public class BotProperties {
-    private static final String PROPERTIES_FILENAME = "bot.secured.properties";
+class BotProperties {
+    static final String OPTION_TOKEN = "token";
+    static final String OPTION_TOKEN_C = "t";
+    static final String OPTION_USERNAME = "username";
+    static final String OPTION_USERNAME_C = "u";
 
-    private final Properties properties = new Properties();
+    private final CommandLine commandLine;
 
-    public BotProperties() throws IOException {
-        /*BotProperties.class.getClassLoader().getResourceAsStream(PROPERTIES_FILENAME);
-        URL url = getClass().getClassLoader().getResource(PROPERTIES_FILENAME);
-        if (url == null) {
-            throw new FileNotFoundException(String.format("Properties file '%s' not found", PROPERTIES_FILENAME));
-        }*/
-        InputStream is = BotProperties.class.getClassLoader().getResourceAsStream(PROPERTIES_FILENAME);//new FileInputStream(url.getFile());
-        properties.load(is);
+    BotProperties(CommandLine commandLine) {
+        this.commandLine = commandLine;
     }
 
     public String getBotUsername() {
-        return properties.getProperty("username");
+        return commandLine.getOptionValue(OPTION_USERNAME);
     }
 
     public String getBotToken() {
-        return properties.getProperty("token");
+        return commandLine.getOptionValue(OPTION_TOKEN);
     }
 }

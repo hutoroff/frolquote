@@ -1,0 +1,15 @@
+{
+  "update_id": 1,
+  "message": {
+    "messageId": 1,
+    "from": {
+      "id": 1,
+      "isBot": false
+    },
+    "chat": {
+      "id": 1,
+      "type": "private"
+    },
+    "text": "/start"
+  }
+}
