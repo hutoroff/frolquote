@@ -7,7 +7,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import ru.hutoroff.frolquote.bot.exceptions.UnknownCommandException;
+import ru.hutoroff.frolquote.bot.command.BotCommand;
+import ru.hutoroff.frolquote.bot.command.BotCommandParser;
 import ru.hutoroff.frolquote.quote.FrolQuotes;
 import ru.hutoroff.frolquote.quote.QuoteProvider;
 
@@ -21,14 +22,14 @@ public class FrolBot extends TelegramLongPollingBot {
 
     private final String botUsername;
     private final String botToken;
-    private final CommandParser commandParser;
+    private final BotCommandParser commandParser;
     private final QuoteProvider quoteProvider = new QuoteProvider(new FrolQuotes());
 
     public FrolBot(String botUsername, String botToken) {
         super();
         this.botUsername = botUsername;
         this.botToken = botToken;
-        this.commandParser = new CommandParser(this.getBotUsername());
+        this.commandParser = new BotCommandParser(this.getBotUsername());
     }
 
     @Override
@@ -61,12 +62,12 @@ public class FrolBot extends TelegramLongPollingBot {
     }
 
     private void processCommand(Message message) {
-        Command command = parseCommand(message);
-        if (command == null) {
+        BotCommand command = commandParser.parseCommand(message);
+        if (!command.isProcessable()) {
             return;
         }
 
-        switch (command) {
+        switch (command.getType()) {
             case QUOTE:
                 answerWithQuote(message);
                 break;
@@ -74,22 +75,6 @@ public class FrolBot extends TelegramLongPollingBot {
             case START:
                 answerWithHelp(message);
         }
-    }
-
-    private Command parseCommand(Message message) {
-        String text = message.getText();
-        int i = text.indexOf(' ');
-        if (i == -1) {
-            i = text.length();
-        }
-        String commandText = text.substring(0, i);
-
-        try {
-            return commandParser.parse(commandText);
-        } catch (UnknownCommandException e) {
-            LOG.warn(String.format("Failed to parse command from text %s", text), e);
-        }
-        return null;
     }
 
     private void answerWithQuote(Message message) {
