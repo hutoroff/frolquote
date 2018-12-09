@@ -1,7 +1,7 @@
 frolquote
 =========
 [![Build Status](https://travis-ci.org/hutoroff/frolquote.svg?branch=dev)](https://travis-ci.org/hutoroff/frolquote)
-[![Coverage Status](https://coveralls.io/repos/github/hutoroff/frolquote/badge.svg?branch=travis_coverage)](https://coveralls.io/github/hutoroff/frolquote?branch=travis_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/hutoroff/frolquote/badge.svg?branch=dev)](https://coveralls.io/github/hutoroff/frolquote?branch=dev)
 
 This is telegram bot that is triggered by key words and replies with quotes from docent of mathematical analysis at Moscow Technical University of Communications and Informatics.
 
