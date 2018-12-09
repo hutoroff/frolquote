@@ -27,4 +27,13 @@ public class BotCommandParserTest extends UnitTest {
         Assert.assertFalse(botCommand.isProcessable());
         Assert.assertNull(botCommand.getType());
     }
+
+    @Test
+    public void parseCommand_privateMessage() throws Exception {
+        Update update = loadUpdate("update_happyPass_privateStart.json");
+
+        BotCommand botCommand = parser.parseCommand(update.getMessage());
+        Assert.assertTrue(botCommand.isProcessable());
+        Assert.assertEquals(CommandType.START, botCommand.getType());
+    }
 }
